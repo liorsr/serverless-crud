@@ -56,9 +56,9 @@ integration resource update.
 
 ## Next Steps
 
-[ ] Check infrastructure security
-[ ] Fix [known issues](#known-issues)
-[ ] Add unit tests for lambda operations
-[ ] Improve error handling, logging
-[ ] Enable CloudWatch
-[ ] Add CRUD operations to website
+- [ ] Check infrastructure security
+- [ ] Fix [known issues](#known-issues)
+- [ ] Add unit tests for lambda operations
+- [ ] Improve error handling, logging
+- [ ] Enable CloudWatch
+- [ ] Add CRUD operations to website
