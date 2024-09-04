@@ -16,7 +16,7 @@
       class="bg-[#0f0643] text-white rounded-full px-2 py-1 text-sm hover:opacity-90">Refetch</button>
     <ul id="items-list" class="list-disc p-5">
       <!-- Items inserted here -->
-      No items found.
+      No items found
     </ul>
   </div>
   <script>
@@ -39,7 +39,11 @@
         // Concatenate URL this way to avoid conflict with template syntax
         const response = await axios.get(apiUrl + '/items');
         const items = response.data;
-        insertItems(items);
+
+        // Insert only if any items exist
+        if (items.length > 0) {
+          insertItems(items);
+        }
       } catch (error) {
         console.error('Error fetching items:', error);
       }
