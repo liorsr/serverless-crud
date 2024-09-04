@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serverless CRUD</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+</head>
+
+<body class="bg-slate-200 flex items-center justify-center min-h-screen">
+  <div class="max-w-4xl w-full bg-slate-100 p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-4">Items</h1>
+    <button id='refetch-button'
+      class="bg-[#0f0643] text-white rounded-full px-2 py-1 text-sm hover:opacity-90">Refetch</button>
+    <ul id="items-list" class="list-disc p-5">
+      <!-- Items inserted here -->
+      No items found
+    </ul>
+  </div>
+  <script>
+    const apiUrl = "${api_url}";
+
+    /**
+     * Create list element and insert.
+     */
+    const insertItems = (items) => {
+      const list = document.getElementById('items-list');
+      // Concatenate this way to avoid conflict with template syntax
+      list.innerHTML = items.map(item => '<li class="p-2 rounded">' + item.name + ' (ID: ' + item.id + ')</li>').join('');
+    }
+
+    /**
+     * Fetch list items.
+     */
+    const fetchItems = async () => {
+      try {
+        // Concatenate URL this way to avoid conflict with template syntax
+        const response = await axios.get(apiUrl + '/items');
+        const items = response.data;
+
+        // Insert only if any items exist
+        if (items.length > 0) {
+          insertItems(items);
+        }
+      } catch (error) {
+        console.error('Error fetching items:', error);
+      }
+    }
+
+    // Refetch on button click
+    document.getElementById('refetch-button').addEventListener('click', fetchItems);
+
+    // Fetch items on page load
+    fetchItems();
+  </script>
+</body>
+
+</html>
