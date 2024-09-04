@@ -51,8 +51,8 @@ output).
 * The API Gateway integration created by Terraform sets its payload format version to `1.0` by
 default. Explicitly setting it to `2.0` (as required by lambda) in Terraform config causes
 server error. This can be fixed by setting it manually after the fact in the AWS Console (see
-[setup](#setup) steps). Though, it should be fixed, as it requires a manual step after every
-integration resource update.
+[setup](#setup) steps). Though, a permanent fix should be done via Terraform config, as it
+currently requires a manual step after every integration resource update.
 
 ## Next Steps
 
